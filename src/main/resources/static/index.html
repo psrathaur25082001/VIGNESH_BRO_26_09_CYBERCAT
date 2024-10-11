@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Request Form</title>
+</head>
+<body>
+    <h1>Insurance Request Form</h1>
+    <form id="insuranceForm">
+        <label for="insuranceType">Insurance Type:</label>
+        <input type="text" id="insuranceType" name="insuranceType" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById("insuranceForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            var insuranceType = document.getElementById("insuranceType").value;
+
+            fetch("/submitInsuranceRequest", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ insuranceType: insuranceType })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.text();
+            })
+            .then(data => {
+                console.log(data); // Log the response from the server
+                alert("Insurance request submitted successfully!");
+                // Optionally, redirect to another page after successful submission
+                window.location.href = "/success.html";
+            })
+            .catch(error => {
+                console.error("There was a problem with your fetch operation:", error);
+                alert("Error: Failed to submit insurance request.");
+            });
+        });
+    </script>
+</body>
+</html>

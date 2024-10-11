@@ -1,0 +1,15 @@
+package com.cybercat.user.repository;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
+
+import com.cybercat.user.entity.TriggerEntity;
+
+@Repository
+public interface TriggerRepo extends MongoRepository<TriggerEntity, String> {
+	
+	TriggerEntity findByName(String name);
+
+	void deleteByCount(int i);
+
+}
