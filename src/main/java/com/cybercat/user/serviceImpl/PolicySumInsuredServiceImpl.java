@@ -42,4 +42,9 @@ public class PolicySumInsuredServiceImpl implements PolicySumInsuredService {
         PolicySumInsured policySumInsured = policySumInsuredRepo.findByEntityId(entityId);
         return policySumInsured;
     }
+
+    @Override
+    public double getIRate(double infectionRate, double threatVectorRate) {
+        return 0;
+    }
 }

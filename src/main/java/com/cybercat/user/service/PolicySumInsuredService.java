@@ -6,5 +6,6 @@ public interface PolicySumInsuredService {
 
     PolicySumInsured saveOrUpdatePolicySumInsured(PolicySumInsured policySumInsured);
     PolicySumInsured getPolicySumInsuredByEntityId(int entityId);
+    double getIRate(double infectionRate,double threatVectorRate);
 
 }
